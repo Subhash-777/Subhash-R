@@ -6,12 +6,12 @@ import { PageTransition } from '@/components/shell/PageTransition';
 import { BootGate } from '@/components/boot/BootGate';
 
 export const metadata: Metadata = {
-  title: 'SubhashOS',
+  title: 'SubhashOSss',
   description: 'Interactive OS-themed portfolio of Subhash R — AI Engineer, DevOps Enthusiast, Researcher, and Linux User based in Chennai, India.',
   keywords: ['AI Engineer', 'DevOps', 'Portfolio', 'Machine Learning', 'Next.js', 'Subhash R'],
   authors: [{ name: 'Subhash R' }],
   openGraph: {
-    title: 'SubhashOS',
+    title: 'SubhashOSss',
     description: 'AI Engineer | DevOps Enthusiast | Linux User',
     type: 'website',
   },
