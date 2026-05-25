@@ -19,7 +19,7 @@ const SCALLOPED_PATH = (() => {
 })();
 
 export function CookieClock() {
-  const { hours, minutes, ampm, date, hourDeg, minuteDeg, secondDeg } = useLiveClock();
+  const { hours, minutes, ampm, date, month, hourDeg, minuteDeg, secondDeg } = useLiveClock();
   const frontRingRef = useRef<SVGPathElement>(null);
   const backRingRef = useRef<SVGPathElement>(null);
   const bevelRingRef = useRef<SVGPathElement>(null);
@@ -110,13 +110,13 @@ export function CookieClock() {
           {/* Premium Date Tags (FRONT OVERLAP) */}
           <div className="absolute -top-4 -left-6 px-4 py-2 rounded-2xl bg-[#1e1633]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center z-30">
             <div className="w-6 h-[2px] bg-[#a855f7] rounded-full mb-1 opacity-80" />
-            <span className="text-white keep-white font-sans font-bold text-[24px] leading-none drop-shadow-md">14</span>
+            <span className="text-white keep-white font-sans font-bold text-[24px] leading-none drop-shadow-md">{date}</span>
             <span className="text-[9px] text-[#a855f7] font-medium tracking-widest uppercase mt-1">Date</span>
           </div>
 
           <div className="absolute -bottom-4 -right-6 px-4 py-2 rounded-2xl bg-[#1e1633]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center z-30">
             <span className="text-[9px] text-[#a855f7] font-medium tracking-widest uppercase mb-1">Month</span>
-            <span className="text-white keep-white font-sans font-bold text-[24px] leading-none drop-shadow-md">05</span>
+            <span className="text-white keep-white font-sans font-bold text-[24px] leading-none drop-shadow-md">{month}</span>
             <div className="w-6 h-[2px] bg-[#a855f7] rounded-full mt-1 opacity-80" />
           </div>
 
