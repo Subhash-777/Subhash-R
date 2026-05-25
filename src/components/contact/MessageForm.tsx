@@ -73,7 +73,7 @@ export function MessageForm() {
   }
 
   return (
-    <div className="flex flex-col h-full p-8 lg:p-12 glass-card border-white/5 rounded-3xl w-full flex-1 relative overflow-hidden">
+    <div className="flex flex-col h-auto lg:h-full p-8 lg:p-12 glass-card border-white/5 rounded-3xl w-full flex-1 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.05)_0%,transparent_70%)] pointer-events-none" />
 

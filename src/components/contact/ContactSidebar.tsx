@@ -5,7 +5,7 @@ import { PERSONAL_INFO, SOCIAL_LINKS } from '@/data/resume';
 
 export function ContactSidebar() {
   return (
-    <div className="flex flex-col justify-between w-full lg:w-[400px] h-full glass-card border-white/5 rounded-3xl p-8 relative overflow-hidden">
+    <div className="flex flex-col justify-between w-full lg:w-[400px] h-auto lg:h-full glass-card border-white/5 rounded-3xl p-8 relative overflow-hidden shrink-0">
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-violet-500/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
