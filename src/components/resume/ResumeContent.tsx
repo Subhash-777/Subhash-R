@@ -114,7 +114,7 @@ export function ResumeContent({ mode }: { mode: ResumeMode }) {
         
         <div className="flex flex-wrap justify-center gap-4 text-[13px] font-medium">
           {[
-            { label: 'Portfolio', url: 'https://subhash-777.github.io' },
+            { label: 'Portfolio', url: 'https://subhash-r.vercel.app' },
             { label: 'GitHub', url: 'https://github.com/Subhash-777' },
             { label: 'LinkedIn', url: 'https://www.linkedin.com/in/subhash-r-b21137393/' },
             { label: 'LeetCode', url: 'https://leetcode.com/Subhash-777/' },
