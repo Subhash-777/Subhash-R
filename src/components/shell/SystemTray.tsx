@@ -28,12 +28,12 @@ export function SystemTray() {
   }, [setNotificationsOpen]);
 
   return (
-    <div className="flex items-center gap-4 ml-auto shrink-0 pr-2">
-      {/* Clock */}
-      <div className="text-[12px] font-medium text-gray-300 flex items-center gap-1.5">
+    <div className="flex items-center gap-2 sm:gap-4 ml-auto shrink-0 pr-1 sm:pr-2">
+      {/* Clock — abbreviated on mobile */}
+      <div className="text-[11px] sm:text-[12px] font-medium text-gray-300 flex items-center gap-1 sm:gap-1.5">
         <span>{formattedTime.toLowerCase()}</span>
-        <span className="text-gray-500">•</span>
-        <span>{formattedDate}</span>
+        <span className="text-gray-500 hidden sm:inline">•</span>
+        <span className="hidden sm:inline">{formattedDate}</span>
       </div>
 
       {/* Theme toggle */}
@@ -49,29 +49,29 @@ export function SystemTray() {
         </div>
       </button>
 
-      {/* Volume */}
+      {/* Volume — hidden on xs */}
       <button 
         onClick={() => setIsMuted(!isMuted)} 
-        className="text-gray-300 hover:text-white transition-colors cursor-pointer outline-none flex items-center justify-center w-6 h-6 rounded-full hover:bg-white/10"
+        className="hidden xs:flex sm:flex text-gray-300 hover:text-white transition-colors cursor-pointer outline-none items-center justify-center w-6 h-6 rounded-full hover:bg-white/10"
       >
         {isMuted ? <VolumeX size={15} className="text-red-400" /> : <Volume2 size={15} />}
       </button>
 
-      {/* Battery Pill */}
-      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[11px] font-bold border border-green-500/30">
+      {/* Battery Pill — hidden on mobile */}
+      <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[11px] font-bold border border-green-500/30">
         <Battery size={13} />
         <span>{pct}%</span>
       </div>
 
       {/* Notifications */}
-      <div ref={notifRef} className="relative ml-2">
+      <div ref={notifRef} className="relative ml-1 sm:ml-2">
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setNotificationsOpen(!notificationsOpen)}
-          className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg"
+          className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg"
           aria-label="Notifications"
         >
-          <Bell size={16} className="text-gray-900" />
+          <Bell size={14} className="text-gray-900" />
           <span className="absolute -top-1 -right-1 bg-violet-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border-2 border-[#09090f]">
             +88
           </span>
@@ -83,7 +83,7 @@ export function SystemTray() {
               initial={{ opacity: 0, scale: 0.95, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 8 }}
-              className="absolute right-0 top-10 w-80 glass-card p-3 z-50"
+              className="absolute right-0 top-10 w-72 sm:w-80 glass-card p-3 z-50"
             >
               <div className="text-xs text-gray-500 font-mono mb-2">// NOTIFICATIONS</div>
               <div className="space-y-2">

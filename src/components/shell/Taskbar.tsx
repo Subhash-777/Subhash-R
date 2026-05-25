@@ -14,7 +14,7 @@ const COUNTER_ITEMS = [
 export function Taskbar() {
   return (
     <header
-      className="fixed top-4 left-4 right-4 z-50 h-14 flex items-center px-4 gap-4 rounded-full shadow-2xl"
+      className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 h-12 sm:h-14 flex items-center px-3 sm:px-4 gap-2 sm:gap-4 rounded-full shadow-2xl"
       style={{
         background: 'var(--taskbar-bg)',
         backdropFilter: `blur(var(--taskbar-blur))`,
@@ -24,7 +24,7 @@ export function Taskbar() {
       }}
     >
       {/* Left Zone */}
-      <div className="flex items-center gap-4 shrink-0 pl-2">
+      <div className="flex items-center gap-2 sm:gap-4 shrink-0 pl-1 sm:pl-2">
         {/* A Logo */}
         <Link href="/" aria-label="Home">
           <motion.div
@@ -41,11 +41,13 @@ export function Taskbar() {
           </motion.div>
         </Link>
 
-        {/* Desktop Label */}
-        <WorkspaceLabel />
+        {/* Desktop Label — hidden on small screens */}
+        <div className="hidden sm:block">
+          <WorkspaceLabel />
+        </div>
 
-        {/* Notification counters */}
-        <div className="flex items-center gap-3 ml-4">
+        {/* Notification counters — hidden on xs, shown sm+ */}
+        <div className="hidden sm:flex items-center gap-2 sm:gap-3 ml-1 sm:ml-4">
           {COUNTER_ITEMS.map(({ icon: Icon, value }, i) => (
             <div key={i} className="flex items-center gap-1 text-[11px] font-bold text-gray-300 bg-white/5 px-2 py-1 rounded-full border border-white/5">
               <Icon size={12} className="text-gray-400" />
@@ -55,7 +57,7 @@ export function Taskbar() {
         </div>
       </div>
 
-      {/* Center — Search Bar */}
+      {/* Center — Search Bar (hidden on mobile) */}
       <div className="flex-1 max-w-md mx-auto hidden md:block">
         <div
           className="w-full h-8 rounded-full border border-white/5 transition-colors cursor-text"

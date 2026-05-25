@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { ResumeNav } from '@/components/resume/ResumeNav';
 import { ResumeContent } from '@/components/resume/ResumeContent';
 import { ProfileSidebar } from '@/components/resume/ProfileSidebar';
 import { ResumeLeftSidebar } from '@/components/resume/ResumeLeftSidebar';
@@ -15,23 +14,23 @@ export default function ResumePage() {
   return (
     <>
       <div className="flex-1 h-full flex overflow-hidden justify-center max-w-[1800px] mx-auto w-full">
-        {/* Left Sidebar (Actions & Summary) */}
-        <div className="w-[300px] border-r border-white/5 bg-black/20 flex-shrink-0 hidden xl:block overflow-y-auto">
+        {/* Left Sidebar — desktop only */}
+        <div className="w-[300px] border-r border-white/5 bg-black/20 flex-shrink-0 hidden xl:flex flex-col overflow-y-auto">
           <ResumeLeftSidebar />
         </div>
 
-        {/* Main Content (Resume) */}
-        <div className="flex-1 max-w-4xl min-w-0 bg-[#09090f]/50 overflow-y-auto shadow-2xl relative z-10">
+        {/* Main Content — full width on mobile, constrained on desktop */}
+        <div className="flex-1 min-w-0 bg-[#09090f]/50 overflow-y-auto shadow-2xl relative z-10">
           <ResumeContent mode={mode} />
         </div>
 
-        {/* Right Sidebar (ATS & Roles) */}
-        <div className="w-[340px] border-l border-white/5 bg-black/20 flex-shrink-0 hidden lg:block overflow-y-auto">
+        {/* Right Sidebar — hidden on mobile, visible on lg+ */}
+        <div className="w-[340px] border-l border-white/5 bg-black/20 flex-shrink-0 hidden lg:flex flex-col overflow-y-auto">
           <ProfileSidebar />
         </div>
       </div>
 
-      {/* Edit Mode Overlay — renders above everything */}
+      {/* Edit Mode Overlay */}
       <EditModeOverlay />
     </>
   );

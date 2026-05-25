@@ -16,10 +16,10 @@ export function BottomDock() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+    <nav className="fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-50">
       <motion.div
         layout
-        className="flex items-end gap-1 px-3 py-2 glass-card"
+        className="flex items-end gap-0.5 sm:gap-1 px-2 sm:px-3 py-1.5 sm:py-2 glass-card"
         style={{ borderRadius: 18 }}
       >
         {NAV_ITEMS.map(({ href, label, Icon, color }) => {
@@ -30,22 +30,28 @@ export function BottomDock() {
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className={`relative flex flex-col items-center justify-center w-16 h-16 rounded-2xl cursor-pointer transition-colors
+                className={`relative flex flex-col items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl cursor-pointer transition-colors
                   ${isActive ? 'bg-white/5' : 'hover:bg-white/5'}`}
               >
                 <Icon
-                  size={24}
-                  className={`transition-colors ${isActive ? color : color} drop-shadow-md`}
+                  size={20}
+                  className={`transition-colors ${isActive ? color : color} drop-shadow-md sm:hidden`}
                   strokeWidth={isActive ? 2.5 : 2}
                   style={isActive ? { filter: `drop-shadow(0 0 6px currentColor)` } : undefined}
                 />
-                <span className={`text-[9px] font-bold mt-1 transition-colors ${isActive ? color : 'text-gray-400'}`}>
+                <Icon
+                  size={24}
+                  className={`transition-colors ${isActive ? color : color} drop-shadow-md hidden sm:block`}
+                  strokeWidth={isActive ? 2.5 : 2}
+                  style={isActive ? { filter: `drop-shadow(0 0 6px currentColor)` } : undefined}
+                />
+                <span className={`text-[8px] sm:text-[9px] font-bold mt-0.5 sm:mt-1 transition-colors ${isActive ? color : 'text-gray-400'}`}>
                   {label}
                 </span>
                 {isActive && (
                   <motion.div
                     layoutId="dock-indicator"
-                    className="absolute -bottom-1 w-8 h-0.5 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]"
+                    className="absolute -bottom-1 w-6 sm:w-8 h-0.5 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]"
                   />
                 )}
               </motion.div>

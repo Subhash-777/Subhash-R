@@ -9,9 +9,6 @@ const variants = {
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  
-  // Home and Contact pages use the original tight spacing (top: 48)
-  // All other pages use the expanded spacing (top: 88) to clear the taskbar
   const isTightSpacing = pathname === '/' || pathname === '/contact';
 
   return (
@@ -20,10 +17,12 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       variants={variants}
       initial="initial"
       animate="animate"
-      className="absolute inset-0 flex-1 overflow-hidden flex flex-col min-h-0"
+      className="absolute inset-x-0 flex-1 flex flex-col min-h-0"
       style={{ 
-        top: isTightSpacing ? 48 : 76, 
-        bottom: 84 
+        top: isTightSpacing ? 44 : 70,
+        bottom: 72,
+        overflowY: 'auto',
+        overflowX: 'hidden',
       }}
     >
       {children}
