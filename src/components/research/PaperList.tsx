@@ -23,7 +23,7 @@ export function PaperList({ selected, onSelect }: { selected: ResearchPaper; onS
       </div>
 
       {/* Paper cards */}
-      <div className="flex-1 overflow-y-auto py-2">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-1 pb-24 lg:pb-4 custom-scrollbar">
         {PAPERS.map((paper) => {
           const isActive = paper.id === selected.id;
           return (

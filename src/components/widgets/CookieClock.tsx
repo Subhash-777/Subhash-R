@@ -50,7 +50,7 @@ export function CookieClock() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-6 mt-4">
+    <div className="flex flex-col items-center gap-6 mt-4 mb-8 sm:mb-4">
       {/* Clock Face - Floating Gear */}
       <div className="relative w-48 h-48 select-none">
         {/* Outer scalloped ring */}

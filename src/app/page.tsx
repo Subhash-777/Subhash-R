@@ -24,7 +24,7 @@ export default function Home() {
         </div>
 
         {/* Right Column — identity + skills */}
-        <div className="flex flex-col gap-6 w-full max-w-[480px] mx-auto lg:mx-0 lg:max-w-[380px] lg:h-full pb-6 pt-0 lg:pt-4">
+        <div className="flex flex-col gap-6 w-full max-w-[480px] mx-auto lg:mx-0 lg:max-w-[380px] lg:h-full pb-24 lg:pb-6 pt-0 lg:pt-4">
           <div className="shrink-0"><WhoamiCard /></div>
           <div className="flex-1 flex flex-col min-h-0"><SkillsPanel /></div>
         </div>

@@ -71,7 +71,7 @@ export function PaperViewer({ paper }: { paper: ResearchPaper }) {
         </div>
 
         {/* Tab content */}
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto px-6 py-5 pb-24 lg:pb-5">
           <AnimatePresence mode="wait">
             {activeTab === 'Abstract' && (
               <motion.div

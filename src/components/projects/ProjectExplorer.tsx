@@ -22,7 +22,7 @@ export function ProjectExplorer({ selected, onSelect }: { selected: Project; onS
       </div>
 
       {/* Project list */}
-      <div className="flex-1 overflow-y-auto py-1">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-1 pb-24 lg:pb-4 custom-scrollbar">
         {PROJECTS.map((project) => {
           const isActive = project.id === selected.id;
           return (

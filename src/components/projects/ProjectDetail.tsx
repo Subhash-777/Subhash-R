@@ -89,7 +89,7 @@ export function ProjectDetail({ project }: { project: Project }) {
         {/* Terminal output */}
         <div
           ref={terminalRef}
-          className="flex-1 overflow-y-auto p-4 font-mono text-xs space-y-0.5 terminal-window"
+          className="flex-1 overflow-y-auto p-4 pb-24 lg:pb-4 font-mono text-xs space-y-0.5 terminal-window"
         >
           {(project.terminalOutput || []).map((line, i) => (
             <motion.div
