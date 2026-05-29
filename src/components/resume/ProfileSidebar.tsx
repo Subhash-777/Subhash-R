@@ -40,7 +40,7 @@ export function ProfileSidebar() {
   };
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto p-4 pb-24">
+    <div className="flex flex-col gap-4 h-full overflow-hidden p-4 pb-24">
 
       {/* ATS Score Widget */}
       <div className="glass-card p-4 border border-white/5">

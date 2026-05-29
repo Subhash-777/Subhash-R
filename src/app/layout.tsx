@@ -4,6 +4,7 @@ import { Taskbar } from '@/components/shell/Taskbar';
 import { BottomDock } from '@/components/shell/BottomDock';
 import { PageTransition } from '@/components/shell/PageTransition';
 import { BootGate } from '@/components/boot/BootGate';
+import { PaletteProvider } from '@/components/search/providers/PaletteProvider';
 
 export const metadata: Metadata = {
   title: 'SubhashOS',
@@ -30,18 +31,20 @@ export default function RootLayout({
       </head>
       <body className="overflow-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
         <BootGate>
-          {/* Top Taskbar */}
-          <Taskbar />
+          <PaletteProvider>
+            {/* Top Taskbar */}
+            <Taskbar />
 
-          {/* Main content area */}
-          <main className="fixed inset-0 flex flex-col">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </main>
+            {/* Main content area */}
+            <main className="fixed inset-0 flex flex-col">
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </main>
 
-          {/* Bottom Navigation Dock */}
-          <BottomDock />
+            {/* Bottom Navigation Dock */}
+            <BottomDock />
+          </PaletteProvider>
         </BootGate>
       </body>
     </html>

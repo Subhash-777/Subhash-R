@@ -1,6 +1,9 @@
 // src/lib/gsap.ts
-// Add GSAP imports and plugin registrations here
-// e.g. import gsap from 'gsap';
-// import { TextPlugin } from 'gsap/TextPlugin';
-// gsap.registerPlugin(TextPlugin);
-export {};
+import gsap from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(TextPlugin);
+}
+
+export { gsap };

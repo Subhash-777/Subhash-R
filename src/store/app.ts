@@ -1,6 +1,8 @@
 'use client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { Toast } from '@/lib/search/types';
+import type { ActiveEgg } from '@/lib/search/easterEggEngine';
 
 interface AppStore {
   bootComplete: boolean;
@@ -39,6 +41,24 @@ interface AppStore {
   openPreview: () => void;
   closePreview: () => void;
   setIsExporting: (val: boolean) => void;
+
+  // Command Palette State
+  paletteOpen: boolean;
+  setPaletteOpen: (val: boolean) => void;
+
+  // Easter Egg State
+  activeEgg: ActiveEgg;
+  setActiveEgg: (egg: ActiveEgg) => void;
+
+  // Achievement State (persisted)
+  achievements: string[];
+  unlockAchievement: (id: string) => void;
+  hasAchievement: (id: string) => boolean;
+
+  // Toast System
+  toasts: Toast[];
+  addToast: (toast: Toast) => void;
+  removeToast: (id: string) => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -106,6 +126,34 @@ export const useAppStore = create<AppStore>()(
       openPreview: () => set({ isPreviewOpen: true }),
       closePreview: () => set({ isPreviewOpen: false }),
       setIsExporting: (val) => set({ isExporting: val }),
+
+      // Command Palette
+      paletteOpen: false,
+      setPaletteOpen: (val) => set({ paletteOpen: val }),
+
+      // Easter Eggs
+      activeEgg: null,
+      setActiveEgg: (egg) => set({ activeEgg: egg }),
+
+      // Achievements
+      achievements: [],
+      unlockAchievement: (id) => set((state) => {
+        if (state.achievements.includes(id)) return state;
+        return { achievements: [...state.achievements, id] };
+      }),
+      hasAchievement: (id) => {
+        // This is a non-reactive getter; for reactive checks use the selector directly
+        return false; // actual check done via selector: useAppStore(s => s.achievements.includes(id))
+      },
+
+      // Toasts
+      toasts: [],
+      addToast: (toast) => set((state) => ({
+        toasts: [...state.toasts, toast].slice(-5), // keep max 5
+      })),
+      removeToast: (id) => set((state) => ({
+        toasts: state.toasts.filter(t => t.id !== id),
+      })),
     }),
     {
       name: 'subhashos-store',
@@ -113,6 +161,7 @@ export const useAppStore = create<AppStore>()(
         selectedRole: state.selectedRole,
         selectedProjectIds: state.selectedProjectIds,
         customRoleTitle: state.customRoleTitle,
+        achievements: state.achievements,
       }),
     }
   )

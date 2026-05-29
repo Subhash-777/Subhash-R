@@ -1,11 +1,13 @@
 'use client';
 import { Sun, Moon, Volume2, VolumeX, Battery, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useLiveClock } from '@/hooks/useLiveClock';
 import { useBattery } from '@/hooks/useBattery';
 import { useAppStore } from '@/store/app';
-import { NOTIFICATIONS } from '@/data/resume';
+import { PROJECTS } from '@/data/projects';
+import { PAPERS } from '@/data/research';
+import { ACHIEVEMENTS, CERTIFICATIONS, MEMBERSHIPS } from '@/data/resume';
 
 export function SystemTray() {
   const { formattedTime, formattedDate } = useLiveClock();
@@ -15,6 +17,28 @@ export function SystemTray() {
   const pct = Math.round(level * 100);
   const batteryColor = pct > 20 ? '#22c55e' : '#ef4444';
   const notifRef = useRef<HTMLDivElement>(null);
+
+  // Dynamically generate notifications from data sources
+  const dynamicNotifications = useMemo(() => {
+    const notes: string[] = [];
+    
+    const latestProject = PROJECTS[0];
+    if (latestProject) notes.push(`New project deployed: ${latestProject.name} ⭐`);
+
+    const latestPaper = PAPERS[0];
+    if (latestPaper) notes.push(`Research paper indexed: ${latestPaper.title.slice(0, 40)}... ✅`);
+
+    const topAchievement = ACHIEVEMENTS[1] || ACHIEVEMENTS[0];
+    if (topAchievement) notes.push(`${topAchievement.title} — ${topAchievement.event} ${topAchievement.icon}`);
+
+    const topMembership = MEMBERSHIPS[0];
+    if (topMembership) notes.push(`New ${topMembership.organization} member since ${topMembership.joined} 📋`);
+
+    const topCert = CERTIFICATIONS[0];
+    if (topCert) notes.push(`Certification earned: ${topCert.title} 🎓`);
+
+    return notes;
+  }, []);
 
   // Close notifications on outside click
   useEffect(() => {
@@ -73,7 +97,7 @@ export function SystemTray() {
         >
           <Bell size={14} className="text-gray-900" />
           <span className="absolute -top-1 -right-1 bg-violet-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border-2 border-[#09090f]">
-            +88
+            +{dynamicNotifications.length}
           </span>
         </motion.button>
 
@@ -87,7 +111,7 @@ export function SystemTray() {
             >
               <div className="text-xs text-gray-500 font-mono mb-2">// NOTIFICATIONS</div>
               <div className="space-y-2">
-                {NOTIFICATIONS.map((note, i) => (
+                {dynamicNotifications.map((note, i) => (
                   <div key={i} className="text-[11px] text-gray-300 py-1.5 px-2 rounded hover:bg-white/5 transition-colors cursor-pointer">
                     {note}
                   </div>

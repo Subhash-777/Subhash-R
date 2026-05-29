@@ -21,7 +21,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       style={{ 
         top: isTightSpacing ? 44 : 70,
         bottom: 72,
-        overflowY: 'auto',
+        overflowY: pathname === '/' ? 'hidden' : 'auto',
         overflowX: 'hidden',
       }}
     >

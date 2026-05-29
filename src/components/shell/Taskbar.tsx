@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Github, ThumbsDown, User } from 'lucide-react';
 import { SystemTray } from './SystemTray';
 import { WorkspaceLabel } from './WorkspaceLabel';
+import { SearchBarTrigger } from '../search/SearchBarTrigger';
 
 const COUNTER_ITEMS = [
   { icon: Github, value: 38 },
@@ -14,7 +15,7 @@ const COUNTER_ITEMS = [
 export function Taskbar() {
   return (
     <header
-      className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 h-12 sm:h-14 flex items-center px-3 sm:px-4 gap-2 sm:gap-4 rounded-full shadow-2xl"
+      className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 h-12 sm:h-14 flex items-center justify-between px-3 sm:px-4 rounded-full shadow-2xl"
       style={{
         background: 'var(--taskbar-bg)',
         backdropFilter: `blur(var(--taskbar-blur))`,
@@ -58,14 +59,8 @@ export function Taskbar() {
       </div>
 
       {/* Center — Search Bar (hidden on mobile) */}
-      <div className="flex-1 max-w-md mx-auto hidden md:block">
-        <div
-          className="w-full h-8 rounded-full border border-white/5 transition-colors cursor-text"
-          style={{
-            background: 'rgba(255,255,255,0.03)',
-            boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.2)'
-          }}
-        />
+      <div className="absolute left-[50.5%] -translate-x-1/2 w-[40%] max-w-[400px] hidden md:block">
+        <SearchBarTrigger />
       </div>
 
       {/* Right Zone — System Tray */}

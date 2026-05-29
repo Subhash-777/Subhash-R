@@ -91,7 +91,7 @@ export function ResumeContent({ mode }: { mode: ResumeMode }) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col gap-6 p-6 md:p-10 pb-24 md:pb-10 overflow-y-auto h-full scrollbar-thin max-w-4xl mx-auto"
+      className="flex flex-col gap-6 p-6 md:p-10 pb-24 md:pb-10 overflow-y-auto h-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] max-w-4xl mx-auto"
     >
       {/* ── Header ── */}
       <motion.div variants={itemVariants} className="flex flex-col items-center text-center mb-4">
