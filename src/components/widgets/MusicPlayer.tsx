@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const PLAYLIST = [
   { title: 'Vizhi Veekura', artist: 'Sai Abhyankkar', album: 'Single', src: '/audio/vizhi.mp3', cover: '/images/covers/vizhi.jpg' },
   { title: 'Nee Kavithaigala', artist: 'Dhibu Ninan Thomas', album: 'Maragatha Naanayam', src: '/audio/nee_kavithaigala.mp3', cover: '/images/covers/nee_kavithaigala.jpg' },
+  { title: 'Idhayam Love - Megamo Aval', artist: 'Santhosh Narayanan', album: 'Meyaadha Maan', src: '/audio/idhayam_love.mp3', cover: '/images/covers/idhayam_love.jpg' },
+  { title: 'Kaarkuzhal Kadavaiye', artist: 'Santhosh Narayanan', album: 'Vada Chennai', src: '/audio/kaarkuzhal_kadavaiye.mp3', cover: '/images/covers/kaarkuzhal_kadavaiye.jpg' },
   { title: 'Pavazha Malli', artist: 'Sai Abhyankkar', album: 'Single', src: '/audio/pavazha_malli.mp3', cover: '/images/covers/pavazha_malli.jpg' },
   { title: 'Pavazha Malli (Unplugged)', artist: 'Sai Abhyankkar', album: 'Single', src: '/audio/pavazha_malli_unplugged.mp3', cover: '/images/covers/pavazha_malli_unplugged.jpg' },
 ];
