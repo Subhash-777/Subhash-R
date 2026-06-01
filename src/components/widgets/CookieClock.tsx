@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useEffect } from 'react';
 import { useLiveClock } from '@/hooks/useLiveClock';
+import { useTranslation } from 'react-i18next';
 
 // ─── Scalloped gear ring path (kept from original, refined tooth count) ────────
 const SCALLOPED_PATH = (() => {
@@ -30,6 +31,7 @@ function describeArc(cx: number, cy: number, r: number, startAngle: number, endA
 }
 
 export function CookieClock() {
+  const { t } = useTranslation();
   const { hours, minutes, seconds, ampm, date, month, hourDeg, minuteDeg, secondDeg } =
     useLiveClock();
 
@@ -340,7 +342,7 @@ export function CookieClock() {
             textTransform: 'uppercase',
             marginTop: '4px',
             fontFamily: "'DM Mono', monospace",
-          }}>Date</span>
+          }}>{t('Date')}</span>
         </div>
 
         {/* MONTH — bottom-right */}
@@ -367,7 +369,7 @@ export function CookieClock() {
             textTransform: 'uppercase',
             marginBottom: '4px',
             fontFamily: "'DM Mono', monospace",
-          }}>Mon</span>
+          }}>{t('Mon')}</span>
           <span style={{
             fontFamily: "'DM Mono', 'Fira Code', monospace",
             fontSize: '22px',

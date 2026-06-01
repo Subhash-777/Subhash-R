@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/store/app';
 import { gsap } from '@/lib/gsap';
+import { useTranslation } from 'react-i18next';
 
 const BOOT_LINES = [
   { status: 'OK',   text: 'Started Kernel Logger' },
@@ -18,6 +19,7 @@ const BOOT_LINES = [
 const BIOS_FULL = 'SubhashOS v1.0.0 — AI-Powered Desktop Environment';
 
 export default function BootAnimation() {
+  const { t } = useTranslation();
   const setBootComplete = useAppStore((s) => s.setBootComplete);
   const containerRef = useRef<HTMLDivElement>(null);
   const biosRef = useRef<HTMLDivElement>(null);
@@ -130,7 +132,7 @@ export default function BootAnimation() {
             <span ref={biosRef}></span>
             <span className="animate-blink">▋</span>
           </div>
-          <div className="text-gray-500 text-xs mt-1">Build 2025.05.14 — Chennai, India</div>
+          <div className="text-gray-500 text-xs mt-1">{t('Build 2025.05.14 — Chennai, India')}</div>
           <div className="text-gray-600 text-xs">RAM: 32768MB OK | CPU: AI-Core v4.2 | GPU: CUDA 12.0</div>
         </div>
 

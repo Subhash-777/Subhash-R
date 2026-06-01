@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 type FormState = 'idle' | 'sending' | 'success' | 'error';
 
@@ -21,6 +22,7 @@ const TRUST_BADGES = [
 ];
 
 export function MessageForm() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formState, setFormState] = useState<FormState>('idle');
@@ -42,13 +44,28 @@ export function MessageForm() {
     setErrors({});
     setFormState('sending');
 
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1800));
-    setFormState('success');
-  };
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
 
-  const inputClass = (field: string) =>
-    `glass-input w-full ${errors[field] ? 'border-red-500/60 focus:border-red-500' : ''}`;
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormState('success');
+      } else {
+        setErrors({ _form: data.error || 'Something went wrong.' });
+        setFormState('error');
+      }
+    } catch (err) {
+      setErrors({ _form: 'Failed to connect to the server.' });
+      setFormState('error');
+    }
+  };
 
   if (formState === 'success') {
     return (
@@ -60,13 +77,13 @@ export function MessageForm() {
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }}>
           <CheckCircle size={64} className="text-green-400" />
         </motion.div>
-        <h3 className="text-xl font-bold text-white">Message Sent!</h3>
-        <p className="text-sm text-gray-400">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+        <h3 className="text-xl font-bold text-white">{t('Message Sent!')}</h3>
+        <p className="text-sm text-gray-400">{t("Thanks for reaching out. I'll get back to you within 24 hours.")}</p>
         <button
           onClick={() => { setFormState('idle'); setForm({ name: '', email: '', subject: '', message: '' }); }}
           className="text-xs text-violet-400 hover:underline"
         >
-          Send another message
+          {t('Send another message')}
         </button>
       </motion.div>
     );
@@ -79,14 +96,14 @@ export function MessageForm() {
 
       {/* Header */}
       <div className="mb-8 z-10">
-        <h2 className="text-2xl font-bold text-white mb-2">Send a Message</h2>
-        <p className="text-sm text-gray-400">Fill in the form below and I'll respond as soon as possible.</p>
+        <h2 className="text-2xl font-bold text-white mb-2">{t('Send a Message')}</h2>
+        <p className="text-sm text-gray-400">{t("Fill in the form below and I'll respond as soon as possible.")}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="flex flex-col gap-2">
-            <label htmlFor="contact-name" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">Name</label>
+            <label htmlFor="contact-name" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Name')}</label>
             <input
               id="contact-name"
               value={form.name}
@@ -98,7 +115,7 @@ export function MessageForm() {
           </div>
           
           <div className="flex flex-col gap-2">
-            <label htmlFor="contact-email" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">Email</label>
+            <label htmlFor="contact-email" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Email')}</label>
             <input
               id="contact-email"
               type="email"
@@ -112,7 +129,7 @@ export function MessageForm() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-subject" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">Subject</label>
+          <label htmlFor="contact-subject" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Subject')}</label>
           <div className="relative">
             <select
               id="contact-subject"
@@ -120,7 +137,7 @@ export function MessageForm() {
               onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
               className={`w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-sm text-white appearance-none cursor-pointer focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.subject ? 'border-red-500/50' : ''}`}
             >
-              <option value="" disabled className="bg-[#0f0822] text-gray-500">Select a topic...</option>
+              <option value="" disabled className="bg-[#0f0822] text-gray-500">{t('Select a topic...')}</option>
               {SUBJECTS.map(s => <option key={s} value={s} className="bg-[#0f0822] text-gray-200">{s}</option>)}
             </select>
             <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
@@ -130,7 +147,7 @@ export function MessageForm() {
 
         <div className="flex flex-col gap-2 flex-1">
           <div className="flex justify-between items-end pl-1 pr-2">
-            <label htmlFor="contact-message" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Message</label>
+            <label htmlFor="contact-message" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">{t('Message')}</label>
             <span className="text-[10px] text-gray-600 font-mono">{form.message.length} / 2000</span>
           </div>
           <textarea

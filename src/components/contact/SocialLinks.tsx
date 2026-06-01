@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { SOCIAL_LINKS, PERSONAL_INFO } from '@/data/resume';
 
 const WHAT_I_DO = [
@@ -11,6 +12,7 @@ const WHAT_I_DO = [
 ];
 
 export function SocialLinks() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto p-4">
       {/* Availability banner */}
@@ -20,7 +22,7 @@ export function SocialLinks() {
       >
         <div className="flex items-center justify-center gap-2 mb-1">
           <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm font-bold text-green-400">Available</span>
+          <span className="text-sm font-bold text-green-400">{t('Available')}</span>
         </div>
         <p className="text-[10px] text-gray-400">{PERSONAL_INFO.availability}</p>
         <div className="flex justify-center gap-2 mt-2 flex-wrap">
@@ -34,7 +36,7 @@ export function SocialLinks() {
 
       {/* What I Do */}
       <div className="glass-card p-4">
-        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">What I Do</div>
+        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">{t('What I Do')}</div>
         <div className="space-y-2.5">
           {WHAT_I_DO.map(({ icon, label, desc }) => (
             <div key={label} className="flex items-start gap-2.5">
@@ -50,7 +52,7 @@ export function SocialLinks() {
 
       {/* Connect With Me */}
       <div className="glass-card p-4">
-        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">Connect With Me</div>
+        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">{t('Connect With Me')}</div>
         <div className="space-y-1">
           {SOCIAL_LINKS.map(({ platform, url, handle }) => (
             <motion.a
@@ -77,7 +79,7 @@ export function SocialLinks() {
 
       {/* Work modes */}
       <div className="glass-card p-4">
-        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">Work Preferences</div>
+        <div className="text-[10px] font-semibold text-gray-400 mb-3 uppercase tracking-wider">{t('Work Preferences')}</div>
         <div className="space-y-2">
           {[
             { label: 'Full-time', icon: '🏢' },

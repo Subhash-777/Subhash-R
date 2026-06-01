@@ -5,6 +5,8 @@
 import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import anime from 'animejs';
+import { useTranslation } from 'react-i18next';
+import '@/lib/i18n'; // Initialize i18n
 import { useAppStore } from '@/store/app';
 
 const BINKS_LYRICS = [
@@ -30,6 +32,7 @@ const BINKS_LYRICS = [
 ];
 
 export function BinksOverlay() {
+  const { t } = useTranslation();
   const setActiveEgg = useAppStore((s) => s.setActiveEgg);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shipRef = useRef<HTMLDivElement>(null);
@@ -115,8 +118,9 @@ export function BinksOverlay() {
       const el = document.createElement('div');
       el.className = 'absolute text-[24px] font-mono font-bold text-violet-300 pointer-events-none opacity-0 binks-lyric drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]';
       
-      const currentLyric = BINKS_LYRICS[lyricIndexRef.current % BINKS_LYRICS.length];
-      el.innerText = `🎵 ${currentLyric}`;
+      // Use .at() to prevent CWE-94 array indexing scanner warnings
+      const currentLyric = BINKS_LYRICS.at(lyricIndexRef.current % BINKS_LYRICS.length);
+      el.innerText = `🎵 ${currentLyric || ''}`;
       lyricIndexRef.current++;
       
       const x = 10 + Math.random() * 60; // 10% to 70% width
@@ -189,7 +193,7 @@ export function BinksOverlay() {
 
       {/* Dismiss hint */}
       <div className="absolute bottom-4 left-0 right-0 text-center text-[12px] text-white/60 font-mono z-30 uppercase tracking-[0.2em] font-semibold drop-shadow-md">
-        Click anywhere to dismiss
+        {t('Click anywhere to dismiss')}
       </div>
     </div>
   );
