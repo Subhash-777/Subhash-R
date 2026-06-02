@@ -162,6 +162,12 @@ export function MessageForm() {
         </div>
 
         <div className="pt-2">
+          {errors._form && (
+            <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
+              <AlertCircle size={16} />
+              <span>{errors._form}</span>
+            </div>
+          )}
           <motion.button
             id="send-btn"
             type="submit"
