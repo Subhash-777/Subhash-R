@@ -36,7 +36,7 @@ export default function RootLayout({
             <Taskbar />
 
             {/* Main content area */}
-            <main className="fixed inset-0 flex flex-col">
+            <main className="fixed inset-0 flex flex-col pt-16 sm:pt-20 pb-20 sm:pb-24">
               <PageTransition>
                 {children}
               </PageTransition>

@@ -90,31 +90,31 @@ export function MessageForm() {
   }
 
   return (
-    <div className="flex flex-col h-auto lg:h-full p-8 lg:p-12 glass-card border-white/5 rounded-3xl w-full flex-1 relative overflow-hidden">
+    <div className="flex flex-col p-6 sm:p-8 lg:p-9 glass-card border-white/5 rounded-3xl w-full flex-1 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Header */}
-      <div className="mb-8 z-10">
-        <h2 className="text-2xl font-bold text-white mb-2">{t('Send a Message')}</h2>
-        <p className="text-sm text-gray-400">{t("Fill in the form below and I'll respond as soon as possible.")}</p>
+      <div className="mb-5 z-10">
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-1.5">{t('Send a Message')}</h2>
+        <p className="text-xs sm:text-sm text-gray-400">{t("Fill in the form below and I'll respond as soon as possible.")}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5 flex-1 z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div className="flex flex-col gap-1.5">
             <label htmlFor="contact-name" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Name')}</label>
             <input
               id="contact-name"
               value={form.name}
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
               placeholder="John Doe"
-              className={`w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.name ? 'border-red-500/50' : ''}`}
+              className={`w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.name ? 'border-red-500/50' : ''}`}
             />
             {errors.name && <span className="text-[10px] text-red-400 pl-1">{errors.name}</span>}
           </div>
           
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             <label htmlFor="contact-email" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Email')}</label>
             <input
               id="contact-email"
@@ -122,30 +122,30 @@ export function MessageForm() {
               value={form.email}
               onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
               placeholder="john@example.com"
-              className={`w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.email ? 'border-red-500/50' : ''}`}
+              className={`w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.email ? 'border-red-500/50' : ''}`}
             />
             {errors.email && <span className="text-[10px] text-red-400 pl-1">{errors.email}</span>}
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5">
           <label htmlFor="contact-subject" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider pl-1">{t('Subject')}</label>
           <div className="relative">
             <select
               id="contact-subject"
               value={form.subject}
               onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-              className={`w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-sm text-white appearance-none cursor-pointer focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.subject ? 'border-red-500/50' : ''}`}
+              className={`w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white appearance-none cursor-pointer focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all ${errors.subject ? 'border-red-500/50' : ''}`}
             >
               <option value="" disabled className="bg-[#0f0822] text-gray-500">{t('Select a topic...')}</option>
               {SUBJECTS.map(s => <option key={s} value={s} className="bg-[#0f0822] text-gray-200">{s}</option>)}
             </select>
-            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 text-xs">▼</div>
           </div>
           {errors.subject && <span className="text-[10px] text-red-400 pl-1">{errors.subject}</span>}
         </div>
 
-        <div className="flex flex-col gap-2 flex-1">
+        <div className="flex flex-col gap-1.5 flex-1 min-h-[120px]">
           <div className="flex justify-between items-end pl-1 pr-2">
             <label htmlFor="contact-message" className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">{t('Message')}</label>
             <span className="text-[10px] text-gray-600 font-mono">{form.message.length} / 2000</span>
@@ -156,14 +156,14 @@ export function MessageForm() {
             onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
             placeholder="Tell me about your project, research, or just say hi..."
             maxLength={2000}
-            className={`w-full flex-1 bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all resize-none ${errors.message ? 'border-red-500/50' : ''}`}
+            className={`w-full flex-1 min-h-[100px] bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/5 transition-all resize-none ${errors.message ? 'border-red-500/50' : ''}`}
           />
           {errors.message && <span className="text-[10px] text-red-400 pl-1">{errors.message}</span>}
         </div>
 
-        <div className="pt-2">
+        <div className="pt-1">
           {errors._form && (
-            <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
+            <div className="mb-3 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
               <AlertCircle size={16} />
               <span>{errors._form}</span>
             </div>
@@ -174,7 +174,7 @@ export function MessageForm() {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             disabled={formState === 'sending'}
-            className="w-full py-4 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-3 transition-all disabled:opacity-70 shadow-[0_10px_30px_rgba(124,58,237,0.2)] hover:shadow-[0_10px_40px_rgba(124,58,237,0.4)]"
+            className="w-full py-3.5 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2.5 transition-all disabled:opacity-70 shadow-[0_10px_30px_rgba(124,58,237,0.2)] hover:shadow-[0_10px_40px_rgba(124,58,237,0.4)]"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #8b5cf6, #a855f7)' }}
           >
             {formState === 'sending' ? (
