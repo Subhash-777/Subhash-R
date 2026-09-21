@@ -69,7 +69,7 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  zoom: 1.1; /* Natively apply 110% scale as requested */
+  zoom: 0.9; /* Apply 90% scale as default */
 }
 
 /* ===== GLASSMORPHISM CARD ===== */
