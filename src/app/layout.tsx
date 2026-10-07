@@ -36,7 +36,13 @@ export default function RootLayout({
             <Taskbar />
 
             {/* Main content area */}
-            <main className="fixed inset-0 flex flex-col pt-16 sm:pt-20 pb-20 sm:pb-24">
+            <main 
+              className="fixed inset-0 flex flex-col overflow-hidden"
+              style={{
+                paddingTop: 'calc(3.8rem + var(--sat, 0px))',
+                paddingBottom: 'calc(4.8rem + var(--sab, 0px))'
+              }}
+            >
               <PageTransition>
                 {children}
               </PageTransition>

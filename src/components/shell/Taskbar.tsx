@@ -15,8 +15,9 @@ const COUNTER_ITEMS = [
 export function Taskbar() {
   return (
     <header
-      className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 h-12 sm:h-14 flex items-center justify-between px-3 sm:px-4 rounded-full shadow-2xl"
+      className="fixed left-2 sm:left-4 right-2 sm:right-4 z-50 h-12 sm:h-14 flex items-center justify-between px-3 sm:px-4 rounded-full shadow-2xl transition-all duration-300"
       style={{
+        top: 'calc(0.5rem + var(--sat, 0px))',
         background: 'var(--taskbar-bg)',
         backdropFilter: `blur(var(--taskbar-blur))`,
         WebkitBackdropFilter: `blur(var(--taskbar-blur))`,

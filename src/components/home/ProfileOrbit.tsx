@@ -2,12 +2,12 @@ import Image from 'next/image';
 
 export function ProfileOrbit() {
   return (
-    <div className="relative flex items-center justify-center w-full h-[520px]">
+    <div className="relative flex items-center justify-center w-full h-[280px] sm:h-[380px] lg:h-[520px] my-2 lg:my-0">
       {/* Deep Purple background glow - static to match reference */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.25)_0%,transparent_65%)] pointer-events-none" />
 
       {/* Orbital SVG Rings */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none drop-shadow-2xl scale-[1.2]">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none drop-shadow-2xl scale-[0.65] sm:scale-[0.9] lg:scale-[1.2]">
         <svg width="800" height="800" viewBox="0 0 800 800" className="opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <g style={{ transformOrigin: 'center' }}>
             <ellipse cx="400" cy="400" rx="360" ry="140" transform="rotate(35 400 400)" fill="none" stroke="rgba(167,139,250,0.4)" strokeWidth="1.5" strokeDasharray="4 6" />
@@ -22,8 +22,8 @@ export function ProfileOrbit() {
       </div>
 
       {/* Profile Image - Static and grounded like the reference */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none scale-[1.15] origin-bottom translate-y-[20px]">
-        <div className="relative w-[500px] h-[520px]">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none scale-[0.85] sm:scale-[1.0] lg:scale-[1.15] origin-bottom translate-y-[10px] lg:translate-y-[20px]">
+        <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[400px] lg:w-[500px] lg:h-[520px]">
           <Image
             src="/images/profile.png"
             alt="Subhash R"
@@ -39,18 +39,18 @@ export function ProfileOrbit() {
       </div>
 
       {/* Quote Section */}
-      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 ml-[20px] z-20 w-max">
-        <div className="group flex flex-col items-center gap-3 cursor-pointer">
-          <div className="flex items-center gap-4">
-            <span className="text-[#a855f7] font-serif text-4xl italic leading-none drop-shadow-[0_0_10px_rgba(168,85,247,0.5)] transform -translate-y-1">"</span>
-            <span className="text-gray-100 font-mono font-medium tracking-[0.2em] text-[13px] uppercase drop-shadow-md group-hover:text-white transition-colors">
+      <div className="absolute -bottom-6 sm:-bottom-12 lg:-bottom-20 left-1/2 -translate-x-1/2 z-20 w-max max-w-[90vw]">
+        <div className="group flex flex-col items-center gap-1.5 sm:gap-3 cursor-pointer">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="text-[#a855f7] font-serif text-2xl sm:text-4xl italic leading-none drop-shadow-[0_0_10px_rgba(168,85,247,0.5)] transform -translate-y-1">"</span>
+            <span className="text-gray-100 font-mono font-medium tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-[13px] uppercase drop-shadow-md group-hover:text-white transition-colors">
               Build. Break. Learn. Repeat.
             </span>
-            <span className="text-[#a855f7] font-serif text-4xl italic leading-none drop-shadow-[0_0_10px_rgba(168,85,247,0.5)] transform -translate-y-1">"</span>
+            <span className="text-[#a855f7] font-serif text-2xl sm:text-4xl italic leading-none drop-shadow-[0_0_10px_rgba(168,85,247,0.5)] transform -translate-y-1">"</span>
           </div>
           
           {/* Animated subtle underline */}
-          <div className="w-8 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[#a855f7] to-transparent opacity-50 group-hover:w-24 group-hover:opacity-100 transition-all duration-500 ease-out" />
+          <div className="w-6 sm:w-8 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[#a855f7] to-transparent opacity-50 group-hover:w-24 group-hover:opacity-100 transition-all duration-500 ease-out" />
         </div>
       </div>
     </div>

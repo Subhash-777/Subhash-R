@@ -16,11 +16,14 @@ export function BottomDock() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-50">
+    <nav 
+      className="fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300"
+      style={{ bottom: 'calc(0.5rem + var(--sab, 0px))' }}
+    >
       <motion.div
         layout
-        className="flex items-end gap-0.5 sm:gap-1 px-2 sm:px-3 py-1.5 sm:py-2 glass-card"
-        style={{ borderRadius: 18 }}
+        className="flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 glass-card shadow-2xl"
+        style={{ borderRadius: 22 }}
       >
         {NAV_ITEMS.map(({ href, label, Icon, color }) => {
           const isActive = pathname === href;
