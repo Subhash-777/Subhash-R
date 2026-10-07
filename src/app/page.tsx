@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { CookieClock } from '@/components/widgets/CookieClock';
 import { MusicPlayer } from '@/components/widgets/MusicPlayer';
 import { TerminalBio } from '@/components/widgets/TerminalBio';
@@ -100,24 +101,47 @@ export default function Home() {
             </div>
 
             {/* Tab Content Display */}
-            <div className="flex justify-center items-center py-2">
-              {activeWidgetTab === 'clock' && (
-                <div className="w-full flex justify-center transition-all animate-fadeIn">
-                  <CookieClock />
-                </div>
-              )}
+            <div className="flex justify-center items-center py-2 min-h-[280px]">
+              <AnimatePresence mode="wait">
+                {activeWidgetTab === 'clock' && (
+                  <motion.div
+                    key="clock"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full flex justify-center"
+                  >
+                    <CookieClock />
+                  </motion.div>
+                )}
 
-              {activeWidgetTab === 'terminal' && (
-                <div className="w-full flex justify-center transition-all animate-fadeIn">
-                  <TerminalBio />
-                </div>
-              )}
+                {activeWidgetTab === 'terminal' && (
+                  <motion.div
+                    key="terminal"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full flex justify-center"
+                  >
+                    <TerminalBio />
+                  </motion.div>
+                )}
 
-              {activeWidgetTab === 'music' && (
-                <div className="w-full flex justify-center transition-all animate-fadeIn">
-                  <MusicPlayer />
-                </div>
-              )}
+                {activeWidgetTab === 'music' && (
+                  <motion.div
+                    key="music"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full flex justify-center"
+                  >
+                    <MusicPlayer />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 

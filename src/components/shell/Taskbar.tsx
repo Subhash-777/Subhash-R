@@ -1,10 +1,11 @@
 'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Github, ThumbsDown, User } from 'lucide-react';
+import { Github, ThumbsDown, User, Search } from 'lucide-react';
 import { SystemTray } from './SystemTray';
 import { WorkspaceLabel } from './WorkspaceLabel';
 import { SearchBarTrigger } from '../search/SearchBarTrigger';
+import { useAppStore } from '@/store/app';
 
 const COUNTER_ITEMS = [
   { icon: Github, value: 38 },
@@ -47,6 +48,16 @@ export function Taskbar() {
         <div className="hidden sm:block">
           <WorkspaceLabel />
         </div>
+
+        {/* Mobile Search Button Trigger — shown on small screens */}
+        <button
+          onClick={() => useAppStore.getState().setPaletteOpen(true)}
+          className="md:hidden flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-violet-300 border border-violet-500/20 active:scale-95 transition-all text-[11px] font-semibold"
+          aria-label="Search Palette"
+        >
+          <Search size={13} />
+          <span>Search</span>
+        </button>
 
         {/* Notification counters — hidden on xs, shown sm+ */}
         <div className="hidden sm:flex items-center gap-2 sm:gap-3 ml-1 sm:ml-4">

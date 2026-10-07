@@ -36,25 +36,33 @@ export function BottomDock() {
                 className={`relative flex flex-col items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl cursor-pointer transition-colors
                   ${isActive ? 'bg-white/5' : 'hover:bg-white/5'}`}
               >
+                {isActive && (
+                  <motion.div
+                    layoutId="dock-bg-glow"
+                    className="absolute inset-0 rounded-2xl bg-violet-500/10 border border-violet-500/20 -z-10 shadow-[0_0_15px_rgba(124,58,237,0.25)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 26 }}
+                  />
+                )}
                 <Icon
                   size={20}
-                  className={`transition-colors ${isActive ? color : color} drop-shadow-md sm:hidden`}
+                  className={`transition-colors ${isActive ? color : 'text-gray-400 group-hover:text-gray-200'} drop-shadow-md sm:hidden`}
                   strokeWidth={isActive ? 2.5 : 2}
-                  style={isActive ? { filter: `drop-shadow(0 0 6px currentColor)` } : undefined}
+                  style={isActive ? { filter: `drop-shadow(0 0 8px currentColor)` } : undefined}
                 />
                 <Icon
                   size={24}
-                  className={`transition-colors ${isActive ? color : color} drop-shadow-md hidden sm:block`}
+                  className={`transition-colors ${isActive ? color : 'text-gray-400 group-hover:text-gray-200'} drop-shadow-md hidden sm:block`}
                   strokeWidth={isActive ? 2.5 : 2}
-                  style={isActive ? { filter: `drop-shadow(0 0 6px currentColor)` } : undefined}
+                  style={isActive ? { filter: `drop-shadow(0 0 8px currentColor)` } : undefined}
                 />
-                <span className={`text-[8px] sm:text-[9px] font-bold mt-0.5 sm:mt-1 transition-colors ${isActive ? color : 'text-gray-400'}`}>
+                <span className={`text-[8.5px] sm:text-[9.5px] font-bold mt-0.5 sm:mt-1 transition-colors ${isActive ? color : 'text-gray-400'}`}>
                   {label}
                 </span>
                 {isActive && (
                   <motion.div
                     layoutId="dock-indicator"
-                    className="absolute -bottom-1 w-6 sm:w-8 h-0.5 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]"
+                    className="absolute -bottom-1 w-6 sm:w-8 h-1 rounded-full bg-violet-400 shadow-[0_0_10px_rgba(167,139,250,1)]"
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   />
                 )}
               </motion.div>

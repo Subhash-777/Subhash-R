@@ -1,9 +1,29 @@
 'use client';
+
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
+import { MapPin, Mail, Phone, ExternalLink, Copy, Check } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '@/data/resume';
+import { useAppStore } from '@/store/app';
 
 export function ContactSidebar() {
+  const [copied, setCopied] = useState(false);
+  const addToast = useAppStore(s => s.addToast);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    setCopied(true);
+    addToast({
+      id: `toast-${Date.now()}`,
+      type: 'info',
+      title: 'Copied to Clipboard!',
+      message: `${PERSONAL_INFO.email} copied`,
+      icon: '📋',
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="flex flex-col justify-between w-full lg:w-[380px] xl:w-[400px] glass-card border-white/5 rounded-3xl p-6 sm:p-7 relative overflow-hidden shrink-0">
       {/* Background glow */}
@@ -27,17 +47,23 @@ export function ContactSidebar() {
         </div>
 
         <div className="flex flex-col gap-4">
-          <a href={`mailto:${PERSONAL_INFO.email}`} className="group flex items-center gap-3.5 cursor-pointer w-max">
-            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/30 transition-all shrink-0">
-              <Mail className="text-gray-400 group-hover:text-violet-400 transition-colors" size={18} />
+          <div className="group flex items-center justify-between gap-3.5 cursor-pointer w-full p-2 rounded-2xl hover:bg-white/5 transition-all border border-transparent hover:border-white/10" onClick={handleCopyEmail}>
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/30 transition-all shrink-0">
+                <Mail className="text-gray-400 group-hover:text-violet-400 transition-colors" size={18} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">Email (Tap to Copy)</div>
+                <div className="text-xs sm:text-sm font-medium text-gray-200 group-hover:text-white transition-colors truncate">{PERSONAL_INFO.email}</div>
+              </div>
             </div>
-            <div>
-              <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">Email</div>
-              <div className="text-xs sm:text-sm font-medium text-gray-200 group-hover:text-white transition-colors break-all">{PERSONAL_INFO.email}</div>
-            </div>
-          </a>
 
-          <a href={`tel:${PERSONAL_INFO.phone}`} className="group flex items-center gap-3.5 cursor-pointer w-max">
+            <button className="p-2 rounded-xl bg-white/5 hover:bg-violet-600/30 text-gray-400 hover:text-violet-300 transition-all shrink-0" aria-label="Copy Email">
+              {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+            </button>
+          </div>
+
+          <a href={`tel:${PERSONAL_INFO.phone}`} className="group flex items-center gap-3.5 cursor-pointer w-full p-2 rounded-2xl hover:bg-white/5 transition-all border border-transparent hover:border-white/10">
             <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/30 transition-all shrink-0">
               <Phone className="text-gray-400 group-hover:text-violet-400 transition-colors" size={18} />
             </div>
@@ -47,7 +73,7 @@ export function ContactSidebar() {
             </div>
           </a>
 
-          <div className="group flex items-center gap-3.5 w-max">
+          <div className="group flex items-center gap-3.5 w-full p-2 rounded-2xl">
             <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
               <MapPin className="text-gray-400" size={18} />
             </div>

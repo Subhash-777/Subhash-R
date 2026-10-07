@@ -357,11 +357,11 @@ export function CommandPalette() {
 
           {/* Palette */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: '-55%', x: '-50%' }}
-            animate={{ opacity: 1, scale: 1, y: '-50%', x: '-50%' }}
-            exit={{ opacity: 0, scale: 0.95, y: '-55%', x: '-50%' }}
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed z-[9991] top-1/2 left-1/2 w-[94vw] max-w-[640px]"
+            className="fixed z-[9991] top-[8%] sm:top-1/2 left-1/2 -translate-x-1/2 sm:-translate-y-1/2 w-[94vw] max-w-[640px]"
           >
             <Command
               label="Command Palette"
